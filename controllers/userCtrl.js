@@ -20,14 +20,7 @@ const userCtrl = {
             await newUser.save()
 
             //create jsonwebtoken to authentication
-            const accessToken = createAccessToken({id: newUser._id})
-            const refreshtoken = createRefreshToken({id: newUser._id})
 
-            res.cookie('refreshtoken', refreshtoken, {
-                httpOnly: true,
-                path: '/user/refresh_token'
-            })
-            res.json({accessToken})
 
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -41,6 +34,17 @@ const userCtrl = {
             if(!user) return res.status(400).json({msg: "User doesn't exist."})
 
             const isMatch = await bcrypt.compare(password, user.password)
+            if(!isMatch) return res.status(400).json({msg: "Incorrect password"})
+
+            //if login success, create access token and refresh token
+            const accessToken = createAccessToken({id: user._id})
+            const refreshtoken = createRefreshToken({id: user._id})
+
+            res.cookie('refreshtoken', refreshtoken, {
+                httpOnly: true,
+                path: '/user/refresh_token'
+            })
+            res.json({accessToken})
 
         } catch (err) {
             return res.status(500).json({msg: err.message})
