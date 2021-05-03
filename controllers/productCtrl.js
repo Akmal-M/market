@@ -1,10 +1,62 @@
 const Products = require('../models/productModel')
 
+//Filter, sorting and pagination
+class APIfeatures {
+    constructor(query, queryString) {
+        this.query = query;
+        this.queryString = queryString;
+    }
+
+    filtering() {
+        const queryObj = {...this.queryString} //queryString = req.query
+
+        const excludedFields = ['page', 'sort', 'limit']
+        excludedFields.forEach(el => delete ([el]))
+
+        let queryStr = JSON.stringify(queryObj)
+        queryStr = queryStr.replace(/\b(gte|gt|lt|regex)\b/g, match => '$' + match)
+
+        //gte = greater than or equal
+        //lte = lesser than or equal
+        //lt = Lesser than equal
+        //gt = greater than equal
+
+        this.query.find(JSON.parse(queryStr))
+
+        return this;
+    }
+
+
+    sorting() {
+        if (this.queryString.sort) {
+            const sortBy = this.queryString.sort.split(',').join('')
+            this.query = this.query.sort(sortBy)
+        } else {
+            this.query = this.query.sort('-createdAt')
+
+        }
+        return this;
+    }
+
+    pagination() {
+        const page = this.queryString.page * 1 || 1
+        const limit = this.queryString.limit * 1 || 9
+        const skip = (page - 1) * limit;
+        this.query = this.query.skip(skip).limit(limit)
+        return this;
+    }
+}
+
 const productCtrl = {
     getProducts: async (req, res) => {
         try {
-            const products = await Products.find();
-            res.json(products)
+            const features = new APIfeatures(Products.find(), req.query)
+            const products = await features.query
+            res.json({
+                status: 'success',
+                result: products.length,
+                products: products
+            })
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
@@ -34,14 +86,13 @@ const productCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-
     updateProduct: async (req, res) => {
         try {
             const {title, price, description, content, images, category} = req.body
             if (!images) return res.status(400).json({msg: "No image uploaded"})
 
             await Products.findOneAndUpdate({_id: req.params.id}, {
-                title:title.toLowerCase(), price, description, content, images, category
+                title: title.toLowerCase(), price, description, content, images, category
             })
             res.json({msg: "Updated a Product"})
         } catch (err) {
