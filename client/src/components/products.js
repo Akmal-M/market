@@ -7,7 +7,7 @@ const Products = () => {
     const state = useContext(GlobalState)
     const [products] = state.productsAPI.products
     return (
-        <div>
+        <div className='lg:mt-24 mt-20'>
             <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-10 gap-5 lg:m-10 m-5'>
                 {
                     products.map(product => {

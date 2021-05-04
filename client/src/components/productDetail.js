@@ -20,7 +20,7 @@ const ProductDetail = () => {
     if (productDetails.length === 0) return null;
 
     return (
-        <div>
+        <div className='lg:mt-32 mt-20'>
             <div className='grid lg:grid-cols-2 grid-cols-1'>
                 <div className='flex justify-center items-center '>
                     <img src={productDetails.images.url} alt="" className='lg:max-h-96'/>
