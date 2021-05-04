@@ -25,6 +25,7 @@ const Header = () => {
                    <Link to='/cart' className='lg:text-5xl text-3xl relative z-10 text-TextColor'>
                        <GiShoppingCart/>
                    </Link>
+
                </div>
            </div>
         </header>
