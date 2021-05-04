@@ -52,7 +52,7 @@ const ProductDetail = () => {
             </div>
             <div>
                 <h2 className='text-center text-2xl lg:py-10 py-5'>Related Products</h2>
-                <div className='grid lg:grid-cols-4 grid-cols-3'>
+                <div className='grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-5 lg:m-10 m-5'>
                     {
                         products.map(product => {
                             return product.category === productDetails.category ?

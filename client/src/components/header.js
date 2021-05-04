@@ -1,23 +1,32 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {GlobalState} from "../GlobalState";
 import {HiOutlineMenu} from "react-icons/hi";
 import {Link} from "react-router-dom";
 import {GiShoppingCart} from "react-icons/gi";
+import {IoClose} from "react-icons/all";
 
 const Header = () => {
+    const [menu, setMenu] = useState(false)
+
     const value = useContext(GlobalState)
     return (
         <header className='flex justify-between items-center shadow py-1 text-semibold text-TextColor'>
-                <div className='text-4xl'><HiOutlineMenu/></div>
+                {/*Mobile header*/}
+
+            { !menu ? <div className='text-4xl lg:hidden' onClick={() => setMenu(!menu) }><HiOutlineMenu/></div> :
+                <div className='text-4xl lg:hidden' onClick={() => setMenu(!menu) }><IoClose/></div>}
+
+
+                {/*Mobile header ends*/}
                 <div>
-                    <h1 className='lg:text-3xl font-semibold'>
+                    <h1 className='lg:text-3xl font-semibold lg:mx-5'>
                         <Link to='/'>E-commerce</Link>
                     </h1>
                 </div>
            <div className='flex justify-between'>
                <div className='flex justify-between items-center lg:px-5 px-2'>
-                   <Link to='/products' className='lg:px-5 px-2'>Products</Link>
-                   <Link to='/login' className='lg:px-5 px-2'>Login</Link>
+                   <Link to='/products' className='lg:px-5 px-2 lg:text-xl font-semibold'>Products</Link>
+                   <Link to='/login' className='lg:px-5 px-2 lg:text-xl font-semibold'>Login</Link>
                </div>
 
                <div className='lg:px-5 px-2'>

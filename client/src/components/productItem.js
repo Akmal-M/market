@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import BtnRender from "./btnRender";
 
 const ProductItem = ({product}) => {
     return (
@@ -10,14 +10,7 @@ const ProductItem = ({product}) => {
                 <span className='text-center'>${product.price}</span>
                 <p className='text-center'>{product.description}</p>
             </div>
-            <div className='flex w-full'>
-                <Link to='#' id={'btn_buy'} className='mx-5 px-5 py-1  bg-btnColor text-2xl text-white '>
-                    Buy
-                </Link>
-                <Link id={'btn_view'} to={`/detail/${product._id}`} className='mx-5 py-1 px-5 bg-btnColor2 text-2xl text-white'>
-                    View
-                </Link>
-            </div>
+            <BtnRender product={product}/>
         </div>
     );
 };
