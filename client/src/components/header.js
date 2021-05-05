@@ -10,6 +10,7 @@ const Header = ({userName}) => {
     const state = useContext(GlobalState)
     const [isLogged, setIsLogged] = state.userAPI.isLogged
     const [isAdmin, setIsAdmin] = state.userAPI.isAdmin
+    const [cart] = state.userAPI.cart
 
     const logoutUser = async () => {
         await axios.get('user/logout')
@@ -71,7 +72,7 @@ const Header = ({userName}) => {
                {
                    isAdmin ? '' :
                        <div className='lg:px-5 px-2'>
-                           <span className='lg:px-2 px-1 lg:text-sm text-xs rounded-full bg-red-600 text-white absolute top-0 lg:right-8 right-3 z-20'>0</span>
+                           <span className='lg:px-2 px-1 lg:text-sm text-xs rounded-full bg-red-600 text-white absolute top-0 lg:right-8 right-3 z-20'>{cart.length}</span>
                            <Link to='/cart' className='lg:text-5xl text-3xl relative z-10 text-TextColor'>
                                <GiShoppingCart/>
                            </Link>
