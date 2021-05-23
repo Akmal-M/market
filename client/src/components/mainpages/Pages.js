@@ -1,13 +1,14 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
-import Products from "../products";
+import Products from "../../components/mainpages/products/Products";
 import Login from "../auth/login";
 import Register from "../auth/register";
-import Cart from "../cart";
+import Cart from "./cart/Cart";
 import NotFound from "../notFound";
 import ProductDetail from "../productDetail";
+import OrderHistory from "./history/OrderHistory";
 
-const Main = () => {
+const Pages = () => {
     return (
         <Switch>
            <Route path='/' exact component={Products}/>
@@ -15,6 +16,7 @@ const Main = () => {
            <Route path='/login' exact component={Login}/>
            <Route path='/register' exact component={Register}/>
            <Route path='/cart' exact component={Cart}/>
+           <Route path='/history' exact component={OrderHistory}/>
 
 
 
@@ -23,4 +25,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default Pages;

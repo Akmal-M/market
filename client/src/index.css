@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+
+    @variants hover, focus {
+
+    }
+
+
+
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+

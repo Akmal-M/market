@@ -28,6 +28,7 @@ const Header = ({userName}) => {
             <>
               <div><Link to='/create_product'>Create Product</Link></div>
               <div><Link to='/category'>Categories</Link></div>
+              <div><Link to='/banner'>Banners</Link></div>
             </>
         )
     }
@@ -35,8 +36,8 @@ const Header = ({userName}) => {
     const loggedRouter = () => {
         return(
             <>
-                <div><Link to='/history'>History</Link></div>
-                <div><Link to='/' onClick={logoutUser}>Logout</Link></div>
+                <div className='lg:mx-5 mx-2'><Link to='/history'>History</Link></div>
+                <div className='lg:mx-5 mx-2'><Link to='/' onClick={logoutUser}>Logout</Link></div>
             </>
         )
     }
@@ -58,7 +59,7 @@ const Header = ({userName}) => {
                 </div>
            <div className='flex justify-between'>
                <div className='flex justify-between items-center lg:px-5 px-2'>
-                   <Link to='/products' className='lg:px-5 px-2 lg:text-xl font-semibold'>{isAdmin ? 'Products' : 'Shop'}</Link>
+                   <Link to='/products' className='lg:px-5 px-2 lg:text-xl text-sm font-semibold'>{isAdmin ? 'Products' : 'Shop'}</Link>
 
                    {isAdmin && adminRouter()}
                    {

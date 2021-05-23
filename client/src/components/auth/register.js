@@ -54,9 +54,9 @@ const Register = () => {
                         </Link>
                     </div>
             </form>
-{/*<div className='hidden'>*/}
-{/*    <Header userName={user.name} />*/}
-{/*</div>*/}
+<div className='hidden'>
+    <Header userName={user.name} />
+</div>
         </div>
     );
 };

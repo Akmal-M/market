@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {GlobalState} from "../GlobalState";
 import {Link} from "react-router-dom";
-import ProductItem from "./productItem";
+import ProductItem from "./mainpages/utils/productItem/ProductItem";
 
 const ProductDetail = () => {
     const params = useParams()
@@ -20,9 +20,9 @@ const ProductDetail = () => {
     if (productDetails.length === 0) return null;
 
     return (
-        <div className='lg:mt-32 mt-20'>
+        <div className='lg:mt-32 mt-20' >
             <div className='grid lg:grid-cols-2 grid-cols-1'>
-                <div className='flex justify-center items-center '>
+                <div className='flex justify-center items-center lg:p-0 p-5'>
                     <img src={productDetails.images.url} alt="" className='lg:max-h-96'/>
                 </div>
                 <div className='lg:p-10 p-5'>
@@ -52,7 +52,7 @@ const ProductDetail = () => {
             </div>
             <div>
                 <h2 className='text-center text-2xl lg:py-10 py-5'>Related Products</h2>
-                <div className='grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-5 lg:m-10 m-5'>
+                <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-10 gap-5 lg:m-10 m-5'>
                     {
                         products.map(product => {
                             return product.category === productDetails.category ?

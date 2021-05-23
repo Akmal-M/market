@@ -1,15 +1,15 @@
 import {BrowserRouter as Router} from "react-router-dom";
 import {DataProvider} from "./GlobalState";
 import Header from "./components/header";
-import Main from "./components/mainpages/main";
+import Pages from "./components/mainpages/Pages";
 
 function App() {
     return (
         <DataProvider>
             <Router>
-                <div className="App">
+                <div className="App container mx-auto">
                     <Header/>
-                    <Main/>
+                    <Pages/>
                 </div>
             </Router>
         </DataProvider>
