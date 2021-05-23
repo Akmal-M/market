@@ -12,6 +12,10 @@ const Header = ({userName}) => {
     const [isAdmin, setIsAdmin] = state.userAPI.isAdmin
     const [cart] = state.userAPI.cart
 
+    const [menu, setMenu] = useState(false)
+
+    // const value = useContext(GlobalState)
+
     const logoutUser = async () => {
         await axios.get('user/logout')
         localStorage.clear()
@@ -37,9 +41,7 @@ const Header = ({userName}) => {
         )
     }
 
-    const [menu, setMenu] = useState(false)
 
-    const value = useContext(GlobalState)
     return (
         <header className='flex justify-between items-center shadow py-1 text-semibold text-TextColor fixed w-full top-0 bg-white z-50 '>
                 {/*Mobile header*/}
